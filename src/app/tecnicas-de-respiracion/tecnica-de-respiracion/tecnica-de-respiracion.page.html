@@ -1,0 +1,32 @@
+<ng-container *ngIf="tecnica$ | async as tecnica">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button
+          defaultHref="/tecnicas-de-respiracion"
+        ></ion-back-button>
+      </ion-buttons>
+      <ion-title class="font-alai font-light tracking-widest text-2xl">{{tecnica.titulo}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <div class="p-4 space-y-6">
+      <img src="assets/images/tecnicas-de-respiracion.jpg" />
+      <ion-text color="secondary">
+        <h1 class="text-xl font-bold text-center">{{tecnica.titulo}}</h1>
+      </ion-text>
+      <ol class="list-inside list-decimal">
+        <li *ngFor="let parrafo of tecnica.parrafos">{{parrafo}}</li>
+      </ol>
+      <ion-button
+        expand="block"
+        color="secondary"
+        routerLink="slides"
+      >
+        Iniciar técnica
+        <ion-icon name="play-outline" class="ml-2"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-content>
+</ng-container>

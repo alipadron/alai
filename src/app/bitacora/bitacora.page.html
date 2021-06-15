@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="font-alai font-light tracking-widest text-2xl">Bitácora</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar color="tertiary" [formControl]="searchTerm" placeholder="Buscar" inputmode="search"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item-sliding *ngFor="let nota of notas$ | async">
+      <ion-item [routerLink]="nota.id">
+        <ion-label color="tertiary">
+          <h1>{{nota.titulo}}</h1>
+          <p>{{nota.contenido}}</p>
+          <p>{{nota.fecha | date}}</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="eliminarNota(nota.id)"
+          >Eliminar</ion-item-option
+        >
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="nueva">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

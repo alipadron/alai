@@ -1,0 +1,15 @@
+<ion-content>
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title class="font-alai font-light tracking-widest text-2xl">Alai</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-card *ngFor="let item of items" [routerLink]="item.url">
+    <img class="h-24 object-cover w-full" [src]="item.imagen" />
+    <ion-card-header [color]="item.color">
+      <ion-card-title class="text-xl">{{item.titulo}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>{{item.descripcion | excerpt:18}} </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,15 @@
+<ion-content>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button
+          [defaultHref]="'/tecnicas-de-respiracion/' + (tecnicaId$ | async)"
+        ></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ng-container [ngSwitch]="tecnicaId$ | async">
+    <app-tecnica-uno-slides *ngSwitchCase="1"></app-tecnica-uno-slides>
+    <app-tecnica-dos-slides *ngSwitchCase="2"></app-tecnica-dos-slides>
+  </ng-container>
+</ion-content>

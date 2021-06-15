@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="font-alai font-light tracking-widest text-2xl">Dinámicas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="p-4">
+    <img src="assets/images/dinamicas.jpg" />
+    <p>
+      Las dinámicas son actividades que tienen como prioridad centrarse en las
+      personas participantes como individuos para ayudar a controlar ciertas
+      situaciones implementando las habilidades para la vida.
+    </p>
+  </div>
+  <ion-list>
+    <ion-item
+      [routerLink]="dinamica.id.toString()"
+      *ngFor="let dinamica of dinamicas"
+    >
+      <ion-label color="primary">
+        <h1>{{dinamica.titulo}}</h1>
+        <p>{{dinamica.descripcion}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

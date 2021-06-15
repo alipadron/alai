@@ -1,0 +1,7 @@
+{
+  "name": "alai",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

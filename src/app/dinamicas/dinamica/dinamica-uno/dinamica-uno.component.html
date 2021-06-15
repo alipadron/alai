@@ -1,0 +1,9 @@
+<div class="p-4 space-y-6">
+  <img src="assets/images/meditacion.jpg" />
+  <ion-text color="primary">
+    <h1 class="text-xl font-bold text-center">{{ dinamica.titulo }}</h1>
+  </ion-text>
+  <ol class="list-inside list-decimal">
+    <li *ngFor="let paso of pasos">{{ paso }}</li>
+  </ol>
+</div>

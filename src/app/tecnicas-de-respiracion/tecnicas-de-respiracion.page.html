@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="font-alai font-light tracking-widest text-2xl">Técnicas de respiración</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="p-4">
+    <img src="assets/images/tecnicas-de-respiracion.jpg" />
+    <p>
+      Las técnicas de respiración son una serie de pasos que te permiten
+      respirar con cierto orden y sentido, de manera que te permita relajarte y
+      en tal caso, parar un ataque de pánico.
+    </p>
+  </div>
+  <ion-list>
+    <ion-item
+      [routerLink]="tecnica.id.toString()"
+      *ngFor="let tecnica of tecnicasdeRespiracion"
+    >
+      <ion-label color="secondary">
+        <h1>{{tecnica.titulo}}</h1>
+        <p>{{tecnica.descripcion}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

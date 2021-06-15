@@ -1,0 +1,33 @@
+<div class="p-4 space-y-6">
+  <img src="assets/images/conteo.jpg" />
+  <ion-text color="primary">
+    <h1 class="text-xl font-bold text-center">{{ dinamica.titulo }}</h1>
+  </ion-text>
+  <p>
+    Este ejercicio permite que dejes de pensar, controla los pensamientos que te
+    están afectándote y al mismo tiempo te distrae. Al mismo tiempo, aplicas una
+    tecnica de respiracion.
+  </p>
+  <ng-template #notRunning>
+    <ion-button
+      (click)="timerState.next({ count: true, value: 100 })"
+      expand="block"
+      color="primary"
+    >
+      Iniciar conteo
+      <ion-icon name="play-outline" class="ml-2"></ion-icon>
+    </ion-button>
+  </ng-template>
+  <ion-button
+    *ngIf="isRunning$ | async; else notRunning"
+    (click)="timerState.next({ count: false, value: 100 })"
+    expand="block"
+    color="tertiary"
+  >
+    Reiniciar conteo
+    <ion-icon name="reload-outline" class="ml-2"></ion-icon>
+  </ion-button>
+  <p *ngIf="isRunning$ | async" class="text-center text-6xl font-bold">
+    {{ time$ | async }}
+  </p>
+</div>

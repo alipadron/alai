@@ -1,0 +1,47 @@
+<ng-container *ngIf="nota$ | async as nota">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/bitacora"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button [disabled]="form.invalid" (click)="guardar()"
+        >Guardar</ion-button
+      >
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-content>
+    <div class="p-4 h-full flex max-w-full" [formGroup]="form">
+      <ion-text color="tertiary" class="flex-1 flex flex-col max-w-full">
+        <div class="flex flex-1 flex-col border rounded max-w-full">
+          <div
+            class="
+              p-2
+              focus-visible:outline-none
+              text-4xl
+              font-bold
+              max-w-full
+              whitespace-pre-wrap
+            "
+            #divTitulo
+            contenteditable
+            formControlName="titulo"
+            (keydown.enter)="$event.preventDefault(); enfocarContenido()"
+          ></div>
+          <div
+            #divContenido
+            class="
+              flex-1
+              p-2
+              focus-visible:outline-none
+              max-w-full
+              whitespace-pre-wrap
+            "
+            contenteditable
+            formControlName="contenido"
+          ></div>
+        </div>
+        <p class="text-xs">{{nota.fecha | date}}</p>
+      </ion-text>
+    </div>
+  </ion-content>
+</ng-container>

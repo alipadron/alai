@@ -1,0 +1,25 @@
+<ion-slides [options]="slideOptions" class="h-full">
+  <ion-slide class="p-4 flex-col">
+    <h1 class="text-center text-4xl mb-4 block">
+      Toma aire por la nariz, lenta y profundamente.
+    </h1>
+    <p *ngIf="timer$ | async as time" class="text-center text-6xl font-bold">
+      {{ time }}
+    </p>
+  </ion-slide>
+  <ion-slide class="p-4 flex-col">
+    <h1 class="text-center text-4xl mb-4 block">Retén el aire</h1>
+    <p *ngIf="timer$ | async as time" class="text-center text-6xl font-bold">
+      {{ time }}
+    </p>
+  </ion-slide>
+  <ion-slide class="p-4 flex-col">
+    <h1 class="text-center text-4xl mb-4 block">Suelta el aire</h1>
+    <p *ngIf="timer$ | async as time" class="text-center text-6xl font-bold">
+      {{ time }}
+    </p>
+  </ion-slide>
+  <ion-slide class="p-4">
+    <h1 class="text-center text-4xl">Repetir</h1>
+  </ion-slide>
+</ion-slides>
