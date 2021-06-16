@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { PopoverController } from '@ionic/angular';
+import { from } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
+import { InfoComponent } from './info/info.component';
 
 @Component({
   selector: 'app-home',
@@ -33,11 +37,23 @@ export class HomePage {
     {
       titulo: 'Música',
       descripcion:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. In deserunt aperiam quas. Nihil, quas nulla exercitationem distinctio earum, quia expedita autem est corrupti id obcaecati inventore perspiciatis laudantium! Exercitationem, architecto?',
+        'La música puede jugar un papel importante en el cuidado de nosotros mismos, no solo como entretenimiento, sino también como herramienta terapéutica para el manejo del estrés. La música nos permite relajarnos a través de un proceso físico por el cual vibraciones de diferente origen se ajustan hasta lograr un mismo ritmo.',
       url: '/musica',
       color: 'primary',
       imagen: 'assets/images/musica.jpg',
     },
   ];
-  constructor() {}
+  constructor(private popoverController: PopoverController) {}
+
+  displayInfo(event: MouseEvent): void {
+    from(
+      this.popoverController.create({
+        event,
+        component: InfoComponent,
+        translucent: true,
+      })
+    )
+      .pipe(switchMap((popover) => from(popover.present())))
+      .subscribe();
+  }
 }

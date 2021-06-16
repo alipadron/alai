@@ -1,13 +1,27 @@
 <ion-content>
   <ion-header>
     <ion-toolbar color="primary">
-      <ion-title class="font-alai font-light tracking-widest text-2xl">Alai</ion-title>
+      <ion-buttons slot="start">
+        <ion-button>
+          <ion-icon></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-title
+        class="font-alai font-light tracking-widest text-4xl text-center"
+      >
+        Alai
+      </ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="displayInfo($event)" color="light">
+          <ion-icon name="information-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
     </ion-toolbar>
   </ion-header>
   <ion-card *ngFor="let item of items" [routerLink]="item.url">
     <img class="h-24 object-cover w-full" [src]="item.imagen" />
     <ion-card-header [color]="item.color">
-      <ion-card-title class="text-xl">{{item.titulo}}</ion-card-title>
+      <ion-card-title class="text-2xl font-alai font-light tracking-widest">{{item.titulo}}</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>{{item.descripcion | excerpt:18}} </ion-card-content>

@@ -1,9 +1,16 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/"></ion-back-button>
+      <ion-back-button
+        text="" defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-title class="font-alai font-light tracking-widest text-2xl">Bitácora</ion-title>
+    <ion-title class="font-alai font-light tracking-widest text-2xl text-center">Bitácora</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+
+        <ion-icon></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
   <ion-toolbar>
     <ion-searchbar color="tertiary" [formControl]="searchTerm" placeholder="Buscar" inputmode="search"></ion-searchbar>

@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'alai',
+  appId: 'com.alipadron.alai',
+  appName: 'Alai',
   webDir: 'www',
   bundledWebRuntime: false
 };

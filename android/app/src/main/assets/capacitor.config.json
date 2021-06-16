@@ -1,0 +1,6 @@
+{
+	"appId": "com.alipadron.alai",
+	"appName": "Alai",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

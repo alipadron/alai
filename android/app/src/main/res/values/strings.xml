@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Alai</string>
+    <string name="title_activity_main">Alai</string>
+    <string name="package_name">com.alipadron.alai</string>
+    <string name="custom_url_scheme">com.alipadron.alai</string>
+</resources>

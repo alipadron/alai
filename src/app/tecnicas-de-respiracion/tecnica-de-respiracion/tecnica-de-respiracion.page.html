@@ -3,10 +3,20 @@
     <ion-toolbar>
       <ion-buttons slot="start">
         <ion-back-button
+        text=""
           defaultHref="/tecnicas-de-respiracion"
         ></ion-back-button>
       </ion-buttons>
-      <ion-title class="font-alai font-light tracking-widest text-2xl">{{tecnica.titulo}}</ion-title>
+      <ion-title
+        class="font-alai font-light tracking-widest text-2xl text-center"
+      >
+        {{tecnica.titulo}}
+      </ion-title>
+      <ion-buttons slot="end">
+        <ion-button>
+          <ion-icon></ion-icon>
+        </ion-button>
+      </ion-buttons>
     </ion-toolbar>
   </ion-header>
 
@@ -19,11 +29,7 @@
       <ol class="list-inside list-decimal">
         <li *ngFor="let parrafo of tecnica.parrafos">{{parrafo}}</li>
       </ol>
-      <ion-button
-        expand="block"
-        color="secondary"
-        routerLink="slides"
-      >
+      <ion-button expand="block" color="secondary" routerLink="slides">
         Iniciar técnica
         <ion-icon name="play-outline" class="ml-2"></ion-icon>
       </ion-button>

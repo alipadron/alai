@@ -1,7 +1,8 @@
 <ng-container *ngIf="nota$ | async as nota">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/bitacora"></ion-back-button>
+      <ion-back-button
+        text="" defaultHref="/bitacora"></ion-back-button>
     </ion-buttons>
     <ion-buttons slot="end">
       <ion-button [disabled]="form.invalid" (click)="guardar()"
