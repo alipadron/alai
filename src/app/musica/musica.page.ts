@@ -10,20 +10,56 @@ import { Cancion } from './cancion.interface';
 export class MusicaPage {
   playlist: Cancion[] = [
     {
-      nombre: 'Sora Ni Utaeba',
-      url: 'assets/mp3/Sora Ni Utaeba - Amazarashi.mp3',
+      nombre: 'Fix You - Coldplay',
+      url: 'assets/mp3/Fix You - Coldplay.mp3',
     },
     {
-      nombre: 'Good Morning World',
-      url: 'assets/mp3/Good Morning World - Burnout Syndromes.mp3',
+      nombre: 'Strawberry Swing - Coldplay',
+      url: 'assets/mp3/Strawberry Swing - Coldplay.mp3',
     },
     {
-      nombre: 'Kaikai Kitan',
-      url: 'assets/mp3/Kaikai Kitan - Eve.mp3',
+      nombre: 'The Scientist - Coldplay',
+      url: 'assets/mp3/The Scientist - Coldplay.mp3',
     },
     {
-      nombre: 'Lost In Paradise',
-      url: 'assets/mp3/Lost In Paradise - Ali ft. AKLO.mp3',
+      nombre: 'Yellow - Coldplay',
+      url: 'assets/mp3/Yellow - Coldplay.mp3',
+    },
+    {
+      nombre: 'Anchor - Novo Amor',
+      url: 'assets/mp3/Anchor - Novo Amor.mp3',
+    },
+    {
+      nombre: 'Birthplace - Novo Amor',
+      url: 'assets/mp3/Birthplace - Novo Amor.mp3',
+    },
+    {
+      nombre: 'Carry You - Novo Amor',
+      url: 'assets/mp3/Carry You - Novo Amor.mp3',
+    },
+    {
+      nombre: 'Haven - Novo Amor',
+      url: 'assets/mp3/Haven - Novo Amor.mp3',
+    },
+    {
+      nombre: 'Repeat Until Death - Novo Amor',
+      url: 'assets/mp3/Repeat Until Death - Novo Amor.mp3',
+    },
+    {
+      nombre: 'State Lines - Novo Amor',
+      url: 'assets/mp3/State Lines - Novo Amor.mp3',
+    },
+    {
+      nombre: 'When The Darkness Comes - Colbie Caillat',
+      url: 'assets/mp3/When The Darkness Comes - Colbie Caillat.mp3',
+    },
+    {
+      nombre: 'Electra - Airstream',
+      url: 'assets/mp3/Electra - Airstream.mp3',
+    },
+    {
+      nombre: 'Watermark - Enya',
+      url: 'assets/mp3/Watermark - Enya.mp3',
     },
   ];
 
