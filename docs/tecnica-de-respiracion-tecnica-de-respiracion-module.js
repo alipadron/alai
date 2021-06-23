@@ -177,17 +177,24 @@ let TecnicaUnoSlidesComponent = class TecnicaUnoSlidesComponent {
     constructor() {
         this.slideOptions = {
             allowTouchMove: false,
-            loop: true
+            loop: true,
         };
         this.slideAnimationDuration = 1000;
         this.reset$ = new rxjs__WEBPACK_IMPORTED_MODULE_4__["Subject"]();
-        this.timer$ = this.reset$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["switchMapTo"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["timer"])(this.slideAnimationDuration, 1500)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])((v) => 3 - v), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["share"])());
+        this.timer$ = this.reset$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["switchMapTo"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["timer"])(this.slideAnimationDuration, 1500)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])((v) => 3 - v), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["shareReplay"])());
         this.timerFinished$ = this.timer$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["filter"])((v) => v === 0));
     }
     ngAfterViewInit() {
         this.reset$.next();
-        this.timerFinished$.subscribe(() => {
-            this.slides.slideNext(this.slideAnimationDuration);
+        this.timerFinished$
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["switchMap"])(() => Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["from"])(this.slides.getActiveIndex())))
+            .subscribe((i) => {
+            if (i === 4) {
+                this.slides.slideTo(1, 0);
+            }
+            else {
+                this.slides.slideNext(this.slideAnimationDuration);
+            }
             this.reset$.next();
         });
     }
@@ -253,10 +260,11 @@ let TecnicaDosSlidesComponent = class TecnicaDosSlidesComponent {
         this.startEightCountdown$ = new rxjs__WEBPACK_IMPORTED_MODULE_4__["Subject"]();
         this.startRepeatCountdown$ = new rxjs__WEBPACK_IMPORTED_MODULE_4__["Subject"]();
         this.destroy$ = new rxjs__WEBPACK_IMPORTED_MODULE_4__["Subject"]();
-        this.fourCountdown$ = this.reset$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["switchMapTo"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["timer"])(this.slideAnimationDuration, 1500)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])((v) => 4 - v), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["take"])(5), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["share"])());
-        this.sevenCountdown$ = this.startSevenCountdown$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["switchMapTo"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["timer"])(this.slideAnimationDuration, 1000)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])((v) => 7 - v), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["take"])(8), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["share"])());
-        this.eightCountdown$ = this.startEightCountdown$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["switchMapTo"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["timer"])(this.slideAnimationDuration, 1000)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])((v) => 8 - v), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["take"])(9), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["share"])());
-        this.repeatCountdown$ = this.startRepeatCountdown$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["switchMapTo"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["timer"])(this.slideAnimationDuration, 1500)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])((v) => 3 - v), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["take"])(4), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["share"])());
+        this.moreThanZero = (v) => v >= 0;
+        this.fourCountdown$ = this.reset$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["switchMapTo"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["timer"])(this.slideAnimationDuration, 1500)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])((v) => 4 - v), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["filter"])(this.moreThanZero), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["shareReplay"])());
+        this.sevenCountdown$ = this.startSevenCountdown$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["switchMapTo"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["timer"])(this.slideAnimationDuration, 1000)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])((v) => 7 - v), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["filter"])(this.moreThanZero), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["shareReplay"])());
+        this.eightCountdown$ = this.startEightCountdown$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["switchMapTo"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["timer"])(this.slideAnimationDuration, 1000)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])((v) => 8 - v), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["filter"])(this.moreThanZero), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["shareReplay"])());
+        this.repeatCountdown$ = this.startRepeatCountdown$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["switchMapTo"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["timer"])(this.slideAnimationDuration, 1500)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])((v) => 3 - v), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["filter"])(this.moreThanZero), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["shareReplay"])());
         this.isFinished = (v) => v === 0;
     }
     ngAfterViewInit() {
@@ -282,9 +290,10 @@ let TecnicaDosSlidesComponent = class TecnicaDosSlidesComponent {
         this.repeatCountdown$
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["filter"])(this.isFinished), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["takeUntil"])(this.destroy$))
             .subscribe(() => {
+            this.slides.slideTo(1, 0);
             this.reset$.next();
-            this.slides.slideNext();
         });
+        this.reset$.subscribe();
     }
     ngOnDestroy() {
         this.destroy$.next();

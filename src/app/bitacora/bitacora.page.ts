@@ -37,6 +37,8 @@ export class BitacoraPage {
   }
 
   eliminarNota(notaId: string): void {
-    this.bitacoraService.eliminarNota(notaId).subscribe();
+    this.bitacoraService
+      .eliminarNota(notaId)
+      .subscribe(() => this.searchTerm.setValue(''));
   }
 }

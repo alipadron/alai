@@ -8,6 +8,8 @@ import {
   filter,
   takeUntil,
   take,
+  shareReplay,
+  tap,
 } from 'rxjs/operators';
 
 @Component({
@@ -29,32 +31,33 @@ export class TecnicaDosSlidesComponent implements OnDestroy {
   private readonly startRepeatCountdown$: Subject<void> = new Subject<void>();
 
   private readonly destroy$: Subject<void> = new Subject<void>();
+  readonly moreThanZero = (v: number) => v >= 0;
 
   readonly fourCountdown$: Observable<number> = this.reset$.pipe(
     switchMapTo(timer(this.slideAnimationDuration, 1500)),
     map((v) => 4 - v),
-    take(5),
-    share()
+    filter(this.moreThanZero),
+    shareReplay()
   );
   readonly sevenCountdown$: Observable<number> = this.startSevenCountdown$.pipe(
     switchMapTo(timer(this.slideAnimationDuration, 1000)),
     map((v) => 7 - v),
-    take(8),
-    share()
+    filter(this.moreThanZero),
+    shareReplay()
   );
   readonly eightCountdown$: Observable<number> = this.startEightCountdown$.pipe(
     switchMapTo(timer(this.slideAnimationDuration, 1000)),
     map((v) => 8 - v),
-    take(9),
-    share()
+    filter(this.moreThanZero),
+    shareReplay()
   );
 
   readonly repeatCountdown$: Observable<number> =
     this.startRepeatCountdown$.pipe(
       switchMapTo(timer(this.slideAnimationDuration, 1500)),
       map((v) => 3 - v),
-      take(4),
-      share()
+      filter(this.moreThanZero),
+      shareReplay()
     );
 
   readonly isFinished = (v: number) => v === 0;
@@ -82,9 +85,10 @@ export class TecnicaDosSlidesComponent implements OnDestroy {
     this.repeatCountdown$
       .pipe(filter(this.isFinished), takeUntil(this.destroy$))
       .subscribe(() => {
+        this.slides.slideTo(1, 0);
         this.reset$.next();
-        this.slides.slideNext();
       });
+    this.reset$.subscribe();
   }
 
   ngOnDestroy(): void {

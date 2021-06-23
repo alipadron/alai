@@ -637,7 +637,9 @@ let BitacoraPage = class BitacoraPage {
         }));
     }
     eliminarNota(notaId) {
-        this.bitacoraService.eliminarNota(notaId).subscribe();
+        this.bitacoraService
+            .eliminarNota(notaId)
+            .subscribe(() => this.searchTerm.setValue(''));
     }
 };
 BitacoraPage.ctorParameters = () => [
