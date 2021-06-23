@@ -329,8 +329,15 @@ let NotaPage = class NotaPage {
             .subscribe(() => this.enfocarTitulo());
     }
     guardar() {
-        this.bitacoraService
-            .agregarNota(this.form.value)
+        this.nota$
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_8__["take"])(1), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_8__["switchMap"])(({ id }) => {
+            if (!id) {
+                return this.bitacoraService.agregarNota(this.form.value);
+            }
+            else {
+                return this.bitacoraService.editarNota(id, this.form.value);
+            }
+        }))
             .subscribe(() => this.router.navigate(['..'], { relativeTo: this.route }));
     }
     enfocarContenido() {
