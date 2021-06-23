@@ -74,8 +74,17 @@ export class NotaPage implements OnInit, OnDestroy {
   }
 
   guardar(): void {
-    this.bitacoraService
-      .agregarNota(this.form.value)
+    this.nota$
+      .pipe(
+        take(1),
+        switchMap(({ id }) => {
+          if (!id) {
+            return this.bitacoraService.agregarNota(this.form.value);
+          } else {
+            return this.bitacoraService.editarNota(id, this.form.value);
+          }
+        })
+      )
       .subscribe(() =>
         this.router.navigate(['..'], { relativeTo: this.route })
       );
